@@ -1,11 +1,13 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Tabela from './Tabela';
 
 function App() {
   return (
-    <p>Hello World!</p>
-    );
+    <div className="App">
+      <Tabela />
+    </div>
+  );
 }
 
 export default App;
