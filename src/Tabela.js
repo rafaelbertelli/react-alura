@@ -31,31 +31,36 @@ const THead = () => {
   );
 };
 
-const TBody = () => {
-  return (
-    <tbody>
-      {dados.map((item, index) => {
-        return (
-          <tr key={index}>
-            <td>{item.nome}</td>
-            <td>{item.livro}</td>
-            <td>{item.preco}</td>
-            <td>
-              <button>Remover</button>
-            </td>
-          </tr>
-        );
-      })}
-    </tbody>
-  );
+const TBody = (props) => {
+  const linhas = props.autores.map((linha, index) => {
+    return (
+      <tr key={index}>
+        <td>{linha.nome}</td>
+        <td>{linha.livro}</td>
+        <td>{linha.preco}</td>
+        <td>
+          <button
+            onClick={() => {
+              props.removeAutor(index);
+            }}
+          >
+            Remover
+          </button>
+        </td>
+      </tr>
+    );
+  });
+  return <tbody>{linhas}</tbody>;
 };
 
 class Tabela extends Component {
   render() {
+    const { autores, removeAutor } = this.props;
+
     return (
       <table>
         <THead />
-        <TBody />
+        <TBody autores={autores} removeAutor={removeAutor} />
       </table>
     );
   }
