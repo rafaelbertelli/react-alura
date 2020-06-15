@@ -43,6 +43,7 @@ const TBody = (props) => {
             onClick={() => {
               props.removeAutor(index);
             }}
+            className="waves-effect waves-light indigo lighten-2 btn"
           >
             Remover
           </button>
@@ -58,7 +59,7 @@ class Tabela extends Component {
     const { autores, removeAutor } = this.props;
 
     return (
-      <table>
+      <table className="centered highlight">
         <THead />
         <TBody autores={autores} removeAutor={removeAutor} />
       </table>
