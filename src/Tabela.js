@@ -1,37 +1,19 @@
 import React, { Component } from "react";
 
-const dados = [
-  {
-    nome: "Paulo",
-    livro: "React",
-    preco: "1000",
-  },
-  {
-    nome: "Nico",
-    livro: "Java",
-    preco: "80",
-  },
-  {
-    nome: "Daniel",
-    livro: "Cobol",
-    preco: "90",
-  },
-];
-
-const THead = () => {
+const TableHead = () => {
   return (
     <thead>
       <tr>
-        <th>Autores</th>
-        <th>Livros</th>
-        <th>Preços</th>
+        <th>Autor</th>
+        <th>Livro</th>
+        <th>Preco</th>
         <th>Remover</th>
       </tr>
     </thead>
   );
 };
 
-const TBody = (props) => {
+const TableBody = (props) => {
   const linhas = props.autores.map((linha, index) => {
     return (
       <tr key={index}>
@@ -40,9 +22,7 @@ const TBody = (props) => {
         <td>{linha.preco}</td>
         <td>
           <button
-            onClick={() => {
-              props.removeAutor(index);
-            }}
+            onClick={() => props.removeAutor(index)}
             className="waves-effect waves-light indigo lighten-2 btn"
           >
             Remover
@@ -51,6 +31,7 @@ const TBody = (props) => {
       </tr>
     );
   });
+
   return <tbody>{linhas}</tbody>;
 };
 
@@ -60,11 +41,10 @@ class Tabela extends Component {
 
     return (
       <table className="centered highlight">
-        <THead />
-        <TBody autores={autores} removeAutor={removeAutor} />
+        <TableHead />
+        <TableBody autores={autores} removeAutor={removeAutor} />
       </table>
     );
   }
 }
-
 export default Tabela;
