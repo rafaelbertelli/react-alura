@@ -15,24 +15,31 @@ class App extends Component {
     };
   }
 
-  removeAutor = (index) => {
+  removeAutor = (id) => {
     const { autores } = this.state;
 
     this.setState({
-      autores: autores.filter((autor, posAtual) => {
-        return posAtual !== index;
+      autores: autores.filter((autor) => {
+        return autor.id !== id;
       }),
     });
     PopUp.exibeMensagem("error", "Autor removido com sucesso");
+    ApiService.RemoveAutor(id);
   };
 
   escutadorDeSubmit = (autor) => {
-    this.setState({ autores: [...this.state.autores, autor] });
-    PopUp.exibeMensagem("success", "Autor adicionado com sucesso");
+    ApiService.CriaAutor(JSON.stringify(autor))
+      .then((res) => res.data)
+      .then((autor) => {
+        this.setState({ autores: [...this.state.autores, autor] });
+        PopUp.exibeMensagem("success", "Autor adicionado com sucesso");
+      });
   };
 
   componentDidMount() {
-    // ApiService.ListaAutores().then((res) =>this.setState({autores => res.data}));
+    ApiService.ListaAutores().then((res) =>
+      this.setState({ autores: [...this.state.autores, ...res.data] })
+    );
   }
 
   render() {

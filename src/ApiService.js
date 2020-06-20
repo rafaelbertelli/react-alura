@@ -3,12 +3,14 @@ const ApiService = {
     return fetch("http://localhost:8000/api/autor").then((res) => res.json());
   },
 
-  CriaAutor: (autor) =>
-    fetch("http://localhost:8000/api/autor", {
+  CriaAutor: (autor) => {
+    console.log(autor);
+    return fetch("http://localhost:8000/api/autor", {
       method: "POST",
-      headers: { "content-type": "aplication/json" },
+      headers: { "Content-Type": "application/json" },
       body: autor,
-    }).then((res) => res.json()),
+    }).then((res) => res.json());
+  },
 
   ListaNomes: () => {
     return fetch("http://localhost:8000/api/autor/nome").then((res) =>
@@ -21,6 +23,7 @@ const ApiService = {
       res.json()
     );
   },
+
   RemoveAutor: (id) => {
     return fetch(`http://localhost:8000/api/autor/${id}`, {
       method: "DELETE",

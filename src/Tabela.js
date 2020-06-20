@@ -14,22 +14,26 @@ const TableHead = () => {
 };
 
 const TableBody = (props) => {
-  const linhas = props.autores.map((linha, index) => {
-    return (
-      <tr key={index}>
-        <td>{linha.nome}</td>
-        <td>{linha.livro}</td>
-        <td>{linha.preco}</td>
-        <td>
-          <button
-            onClick={() => props.removeAutor(index)}
-            className="waves-effect waves-light indigo lighten-2 btn"
-          >
-            Remover
-          </button>
-        </td>
-      </tr>
-    );
+  const linhas = props.autores.map((linha) => {
+    if (linha) {
+      return (
+        <tr key={linha.id}>
+          <td>{linha.nome}</td>
+          <td>{linha.livro}</td>
+          <td>{linha.preco}</td>
+          <td>
+            <button
+              onClick={() => props.removeAutor(linha.id)}
+              className="waves-effect waves-light indigo lighten-2 btn"
+            >
+              Remover
+            </button>
+          </td>
+        </tr>
+      );
+    }
+
+    return null;
   });
 
   return <tbody>{linhas}</tbody>;
