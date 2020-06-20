@@ -5,6 +5,7 @@ import Header from "./Header";
 import Tabela from "./Tabela";
 import Form from "./Formulario";
 import PopUp from "./PopUp";
+import ApiService from "./ApiService";
 
 class App extends Component {
   state = {
@@ -53,10 +54,13 @@ class App extends Component {
   };
 
   render() {
+    ApiService.ListaNomes().then((res) => console.log(res.data));
+
     return (
       <Fragment>
         <Header />
         <div className="container mb-10">
+          <h1>Casa do Código</h1>
           <Tabela autores={this.state.autores} removeAutor={this.removeAutor} />
           <Form escutadorDeSubmit={this.escutadorDeSubmit} />
         </div>
