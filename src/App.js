@@ -8,35 +8,13 @@ import PopUp from "./PopUp";
 import ApiService from "./ApiService";
 
 class App extends Component {
-  state = {
-    autores: [
-      {
-        nome: "Paulo",
-        livro: "React",
-        preco: "1000",
-      },
-      {
-        nome: "Daniel",
-        livro: "Java",
-        preco: "99",
-      },
-      {
-        nome: "Marcos",
-        livro: "Design",
-        preco: "150",
-      },
-      {
-        nome: "Bruno",
-        livro: "DevOps",
-        preco: "100",
-      },
-      {
-        nome: "Nico",
-        livro: "Java",
-        preco: "9999",
-      },
-    ],
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      autores: [],
+    };
+  }
+
   removeAutor = (index) => {
     const { autores } = this.state;
 
@@ -53,9 +31,11 @@ class App extends Component {
     PopUp.exibeMensagem("success", "Autor adicionado com sucesso");
   };
 
-  render() {
-    ApiService.ListaNomes().then((res) => console.log(res.data));
+  componentDidMount() {
+    // ApiService.ListaAutores().then((res) =>this.setState({autores => res.data}));
+  }
 
+  render() {
     return (
       <Fragment>
         <Header />

@@ -9,10 +9,23 @@ const ApiService = {
       headers: { "content-type": "aplication/json" },
       body: autor,
     }).then((res) => res.json()),
+
   ListaNomes: () => {
     return fetch("http://localhost:8000/api/autor/nome").then((res) =>
       res.json()
     );
+  },
+
+  ListaLivros: () => {
+    return fetch("http://localhost:8000/api/autor/livro").then((res) =>
+      res.json()
+    );
+  },
+  RemoveAutor: (id) => {
+    return fetch(`http://localhost:8000/api/autor/${id}`, {
+      method: "DELETE",
+      headers: { "content-type": "aplication/json" },
+    }).then((res) => res.json());
   },
 };
 
